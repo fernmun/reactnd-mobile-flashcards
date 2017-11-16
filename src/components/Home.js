@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
+import DeckList from './DeckList'
 
 class Home extends Component {
   render() {
@@ -9,6 +10,7 @@ class Home extends Component {
         <TouchableOpacity onPress={() => { console.log('New Deck') }}>
           <Text>New Deck</Text>
         </TouchableOpacity>
+        <DeckList />
       </View>
     )
   }
