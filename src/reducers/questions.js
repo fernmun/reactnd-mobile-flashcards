@@ -4,10 +4,10 @@ import questionsData from '../data/questions'
 export default function questions(state = questionsData, action) {
   switch (action.type) {
     case ADD_QUESTION:
-      return {
+      return [
         ...state,
-        ...action.question
-      }
+        action.question
+      ]
     default:
       return state
   }

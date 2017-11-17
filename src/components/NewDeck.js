@@ -1,15 +1,21 @@
-import React, { Component } from 'react';
-import { View } from 'react-native';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { View } from 'react-native'
 import {
   FormLabel,
   FormInput,
   FormValidationMessage,
   Button
-} from 'react-native-elements';
-import { connect } from 'react-redux';
-import { reduxForm, Field, reset, untouch } from 'redux-form';
-import { addDeck } from '../actions';
-import VIEWS from '../const/views';
+} from 'react-native-elements'
+import {
+  reduxForm,
+  Field,
+  reset,
+  untouch
+} from 'redux-form'
+import { NavigationActions } from 'react-navigation'
+import { addDeck } from '../actions'
+import VIEWS from '../const/views'
 
 class NewDeck extends Component {
   renderField = ({ input, meta: { touched, error }, ...props }) => {
@@ -32,8 +38,10 @@ class NewDeck extends Component {
   };
 
   handleSubmit = values => {
-    this.props.addDeck(values.deck);
-    this.props.navigation.navigate(VIEWS.HOME);
+    this.props.addDeck(values.deck)
+    this.props.navigation.dispatch(NavigationActions.back())
+    this.props.dispatch(untouch('NewDeck'))
+    this.props.dispatch(reset('NewDeck'))
   };
 
   render() {
@@ -55,18 +63,18 @@ class NewDeck extends Component {
 }
 
 function validate(values, props) {
-  const error = {};
+  const error = {}
 
   if (!values.deck)
     error.deck = 'Title should not be empty!'
   else if (props.decks.find(deck => deck === values.deck))
     error.deck = `"${values.deck}" already exists!`
 
-  return error;
+  return error
 }
 
 function mapStateToProps({ decks }) {
-  return { decks };
+  return { decks }
 }
 
 export default connect(mapStateToProps, { addDeck })(

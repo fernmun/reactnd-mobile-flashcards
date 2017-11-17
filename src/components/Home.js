@@ -10,7 +10,6 @@ import NewDeck from './NewDeck'
 class Home extends Component {
   render() {
     const { navigate } = this.props.navigation
-    return (<NewDeck />)
     return (
       <View>
         <Text>Decks</Text>

@@ -4,10 +4,10 @@ import decksData from '../data/decks'
 export default function decks(state = decksData, action) {
   switch (action.type) {
     case ADD_DECK:
-      return {
+      return [
         ...state,
-        ...action.deck
-      }
+        action.deck
+      ]
     default:
       return state
   }
