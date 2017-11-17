@@ -9,7 +9,7 @@ class DeckList extends Component {
   renderRow = (deck) => {
     return (
       <ListItem
-        key={guid}
+        key={guid()}
         title={deck.title}
         badge={{value: deck.questions.length}}
       />
