@@ -1,22 +1,27 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
-import { List, ItemList } from 'react-native-elements'
+import { View, Text, FlatList } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { guid } from '../utils/helpers'
 
 class DeckList extends Component {
-   render() {
-     console.log(this.props.decks)
-     return (
-       <View>
-        <Text>I'm DeckList component</Text>
-       </View>
-     )
-   }
+  renderItem = ({ item }) => {
+    return <Text>{item}</Text>
+  }
+
+  render() {
+   console.log(this.props.decks)
+   return (
+     <FlatList
+        data={this.props.decks}
+        renderItem={this.renderItem}
+        keyExtractor={guid}
+     />
+   )
+  }
 }
 
 function mapStateToProps ({ decks }) {
-  console.log('state')
   return {
     decks: decks
   }
