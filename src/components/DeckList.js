@@ -1,29 +1,36 @@
 import React, { Component } from 'react'
 import { View, Text, FlatList } from 'react-native'
+import { List, ListItem } from 'react-native-elements'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { guid } from '../utils/helpers'
 
 class DeckList extends Component {
-  renderItem = ({ item }) => {
-    return <Text>{item}</Text>
+  renderRow = (deck) => {
+    return (
+      <ListItem
+        key={guid}
+        title={deck.title}
+        badge={{value: deck.questions.length}}
+      />
+    )
   }
 
   render() {
-   console.log(this.props.decks)
-   return (
-     <FlatList
-        data={this.props.decks}
-        renderItem={this.renderItem}
-        keyExtractor={guid}
-     />
-   )
+    return (
+      <List>
+        {this.props.decks.map(this.renderRow)}
+      </List>
+    )
   }
 }
 
-function mapStateToProps ({ decks }) {
+function mapStateToProps ({ decks, questions }) {
   return {
-    decks: decks
+    decks: decks.map(title => ({
+      title,
+      questions: questions.filter(question => question.deck === title)
+    }))
   }
 }
 
