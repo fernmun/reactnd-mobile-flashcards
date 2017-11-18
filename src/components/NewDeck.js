@@ -34,15 +34,15 @@ class NewDeck extends Component {
           {touched && error ? error : null}
         </FormValidationMessage>
       </View>
-    );
-  };
+    )
+  }
 
   handleSubmit = values => {
     this.props.addDeck(values.deck)
     this.props.navigation.dispatch(NavigationActions.back())
     this.props.dispatch(untouch('NewDeck'))
     this.props.dispatch(reset('NewDeck'))
-  };
+  }
 
   render() {
     return (
@@ -58,7 +58,7 @@ class NewDeck extends Component {
           onPress={this.props.handleSubmit(this.handleSubmit)}
         />
       </View>
-    );
+    )
   }
 }
 
