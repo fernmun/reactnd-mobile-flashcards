@@ -19,7 +19,8 @@ import VIEWS from '../const/views'
 
 class NewDeck extends Component {
   renderField = ({ input, meta: { touched, error }, ...props }) => {
-    const { label, ...inputProps } = props;
+    const { label, ...inputProps } = props
+    
     return (
       <View>
         <FormLabel>

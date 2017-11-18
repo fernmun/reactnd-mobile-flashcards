@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 
-class Question extends Component {
-  render() {
-    return (
-      <View>
-        <Text>I'm a Question View</Text>
-      </View>
-    )
-  }
+const Question = ({ question, answer, number }) => {
+  return (
+    <View>
+      <Text>{`Question number ${number}`}</Text>
+      <Text>{question}</Text>
+      <Text>{answer}</Text>
+      <TouchableOpacity>
+        <Text>View Answer</Text>
+      </TouchableOpacity>
+    </View>
+  )
 }
 
 export default Question;

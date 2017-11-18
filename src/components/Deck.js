@@ -18,6 +18,12 @@ class Deck extends Component {
           style={{marginTop: 10}}
           onPress={() => this.props.navigation.navigate(VIEWS.NEW_QUESTION, { deck })}
         />
+        <Button
+          large
+          title="Start Quiz"
+          style={{marginTop: 10}}
+          onPress={() => this.props.navigation.navigate(VIEWS.QUIZ, { deck })}
+        />
       </View>
     )
   }

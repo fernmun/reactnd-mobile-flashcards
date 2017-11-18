@@ -3,7 +3,9 @@ const VIEWS = {
   NEW_DECK: 'NewDeck',
   DECK: 'Deck',
   NEW_QUESTION: 'NewQuestion',
-  QUESTION: 'Question'
+  QUESTION: 'Question',
+  QUIZ: 'Quiz',
+  QUIZ_RESULT: 'QuizResult'
 }
 
 export default VIEWS

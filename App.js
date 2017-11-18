@@ -9,6 +9,8 @@ import NewDeck from './src/components/NewDeck'
 import Deck from './src/components/Deck'
 import NewQuestion from './src/components/NewQuestion'
 import Question from './src/components/Question'
+import Quiz from './src/components/Quiz'
+import QuizResult from './src/components/QuizResult'
 
 const Stack = StackNavigator({
   [VIEWS.HOME]: {
@@ -25,7 +27,13 @@ const Stack = StackNavigator({
   },
   [VIEWS.QUESTION]: {
     screen: Question
-  }
+  },
+  [VIEWS.QUIZ]: {
+    screen: Quiz
+  },
+  [VIEWS.QUIZ_RESULT]: {
+    screen: QuizResult
+  },
 })
 
 export default class App extends React.Component {
