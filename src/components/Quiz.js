@@ -33,7 +33,7 @@ class Quiz extends Component {
         <Question
           question={this.props.questions[this.state.currentQuestion].question}
           answer={this.props.questions[this.state.currentQuestion].answer}
-          number={this.state.currentQuestion}
+          number={`${this.state.currentQuestion + 1}/${this.props.questions.length}`}
         />
         <Button
           large
@@ -53,7 +53,7 @@ class Quiz extends Component {
 
   renderResult = () => {
     return (
-      <QuizResult />
+      <QuizResult correct={this.state.correct} total={this.props.questions.length} />
     )
   }
 

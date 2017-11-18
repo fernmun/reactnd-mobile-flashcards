@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
+import PropTypes from 'prop-types'
 
 const Question = ({ question, answer, number }) => {
   return (
@@ -12,6 +13,12 @@ const Question = ({ question, answer, number }) => {
       </TouchableOpacity>
     </View>
   )
+}
+
+Question.propTypes = {
+  question: PropTypes.string.isRequired,
+  answer: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
 }
 
 export default Question;
