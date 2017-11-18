@@ -3,9 +3,11 @@ import { View, Text, TouchableOpacity } from 'react-native'
 
 class Deck extends Component {
   render() {
+    const { deck } = this.props.navigation.state.params
+
     return (
       <View>
-        <Text>I'm New Deck View</Text>
+        <Text>{`I'm ${deck} View`}</Text>
       </View>
     )
   }

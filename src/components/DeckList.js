@@ -4,6 +4,7 @@ import { List, ListItem } from 'react-native-elements'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { guid } from '../utils/helpers'
+import VIEWS from '../const/views'
 
 class DeckList extends Component {
   renderRow = (deck) => {
@@ -12,6 +13,7 @@ class DeckList extends Component {
         key={guid()}
         title={deck.title}
         badge={{value: deck.questions.length}}
+        onPress={() => this.props.navigate(VIEWS.DECK, { deck: deck.title })}
       />
     )
   }

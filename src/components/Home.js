@@ -10,13 +10,15 @@ import NewDeck from './NewDeck'
 class Home extends Component {
   render() {
     const { navigate } = this.props.navigation
+
     return (
       <View>
         <Text>Decks</Text>
-        <DeckList />
+        <DeckList navigate={navigate} />
         <Button
           large
           title="Add New Deck"
+          style={{marginTop: 10}}
           onPress={() => navigate(VIEWS.NEW_DECK)}
         />
       </View>
