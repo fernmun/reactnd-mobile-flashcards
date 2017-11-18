@@ -14,7 +14,7 @@ class Deck extends Component {
         <Text>{`${this.props.questions.length} cards`}</Text>
         <Button
           large
-          title="Add New Question"
+          title="Add New Card"
           style={{marginTop: 10}}
           onPress={() => this.props.navigation.navigate(VIEWS.NEW_QUESTION, { deck })}
         />

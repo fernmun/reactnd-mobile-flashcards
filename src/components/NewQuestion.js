@@ -40,17 +40,19 @@ class NewQuestion extends Component {
   }
 
   handleSubmit = values => {
+    const { deck } = this.props.navigation.state.params
+
     const question = {
       question: values.question,
       answer: values.answer,
-      deck: this.props.deck
+      deck: deck
     }
 
     this.props.addQuestion(question)
     this.props.navigation.dispatch(NavigationActions.back())
     this.props.dispatch(untouch('NewQuestion'))
     this.props.dispatch(reset('NewQuestion'))
-  };
+  }
 
   render() {
     return (
@@ -70,7 +72,7 @@ class NewQuestion extends Component {
           placeholder="Please write an answer..."
         />
         <Button
-          title="Create New Question"
+          title="Create New Card"
           onPress={this.props.handleSubmit(this.handleSubmit)}
         />
       </View>
@@ -82,10 +84,10 @@ function validate(values, props) {
   const error = {}
 
   if (!values.question)
-    error.question = 'Please write a question!'
+    error.question = 'Question should not be empty!'
 
   if (!values.answer)
-    error.question = 'Please write an answer!'
+    error.question = 'Answer should not be empty!'
 
   return error
 }
