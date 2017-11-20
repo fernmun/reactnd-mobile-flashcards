@@ -11,6 +11,7 @@ import NewQuestion from './src/components/NewQuestion'
 import Question from './src/components/Question'
 import Quiz from './src/components/Quiz'
 import QuizResult from './src/components/QuizResult'
+import { setLocalNotification } from './src/utils/helpers.js'
 
 const Stack = StackNavigator({
   [VIEWS.HOME]: {
@@ -37,6 +38,10 @@ const Stack = StackNavigator({
 })
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
+
   render() {
     return (
       <Provider store={store}>
