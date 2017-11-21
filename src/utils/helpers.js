@@ -32,6 +32,12 @@ export function createNotification() {
     body: NOTIFICATIONS.BODY,
     ios: {
       sound: true
+    },
+    android: {
+      sound: true,
+      priority: 'high',
+      sticky: false,
+      vibrate: true
     }
   }
 }
