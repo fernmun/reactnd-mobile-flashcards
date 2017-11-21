@@ -4,7 +4,8 @@ import { Button } from 'react-native-elements'
 import { connect } from 'react-redux'
 import Question from './Question'
 import QuizResult from './QuizResult'
-import { green, pureRed, black } from '../utils/colors'
+import { green, pureRed, black, red } from '../utils/colors'
+import { NavigationActions } from 'react-navigation'
 
 class Quiz extends Component {
   initialState = {
@@ -61,6 +62,8 @@ class Quiz extends Component {
   }
 
   renderResult = () => {
+    const { deck } = this.props.navigation.state.params
+
     return (
       <View>
         <QuizResult correct={this.state.correct} total={this.props.questions.length} />
@@ -69,9 +72,18 @@ class Quiz extends Component {
           title="Restart Quiz"
           borderRadius={10}
           backgroundColor={black}
-          icon={{ name: 'play-circle-filled' }}
+          icon={{ name: 'loop' }}
           style={styles.button}
           onPress={() => this.setState(() => (this.initialState))}
+        />
+        <Button
+          large
+          title={`Back to ${deck} Deck`}
+          borderRadius={10}
+          backgroundColor={red}
+          icon={{ name: 'reply' }}
+          style={styles.button}
+          onPress={() => this.props.navigation.dispatch(NavigationActions.back())}
         />
       </View>
     )
