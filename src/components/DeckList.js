@@ -16,7 +16,7 @@ class DeckList extends Component {
         badge={{
           value: deck.questions.length,
           containerStyle: styles.item,
-          textStyle: { color: white }
+          textStyle: styles.textList
         }}
         onPress={() => this.props.navigate(VIEWS.DECK, { deck: deck.title })}
       />
@@ -49,6 +49,9 @@ const styles = StyleSheet.create({
   item: {
     backgroundColor: black,
     marginRight: 10
+  },
+  textList: {
+    color: `${white}`
   }
 })
 

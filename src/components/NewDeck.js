@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import {
   FormLabel,
   FormInput,
@@ -48,7 +48,7 @@ class NewDeck extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.container}>
         <Field
           name="deck"
           component={this.renderField}
@@ -81,6 +81,12 @@ function validate(values, props) {
 function mapStateToProps({ decks }) {
   return { decks }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  }
+})
 
 export default connect(mapStateToProps, { addDeck })(
   reduxForm({

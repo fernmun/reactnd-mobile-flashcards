@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
 import {
   FormLabel,
@@ -58,7 +58,7 @@ class NewQuestion extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.container}>
         <Field
           name="question"
           component={InputWithLabel}
@@ -94,6 +94,12 @@ function validate(values, props) {
 
   return errors
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  }
+})
 
 export default connect(null, { addQuestion })(
   reduxForm({
