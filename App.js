@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, StatusBar, View } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 import { Provider } from 'react-redux'
 import store from './src/store'
@@ -12,30 +12,67 @@ import Question from './src/components/Question'
 import Quiz from './src/components/Quiz'
 import QuizResult from './src/components/QuizResult'
 import { setLocalNotification } from './src/utils/helpers.js'
+import { Constants } from 'expo'
+import { white, red } from './src/utils/colors.js'
+
+const NavigationOptions = {
+  headerTintColor: white,
+  headerTitleStyle: {
+    fontSize: 24,
+    marginBottom: 40
+  },
+  headerStyle: {
+    backgroundColor: red,
+    height: 10,
+    paddingBottom: 20
+  }
+}
 
 const Stack = StackNavigator({
   [VIEWS.HOME]: {
-    screen: Home
+    screen: Home,
+    navigationOptions: {
+      ...NavigationOptions,
+      title: 'Decks'
+    }
   },
   [VIEWS.NEW_DECK]: {
-    screen: NewDeck
+    screen: NewDeck,
+    navigationOptions: {
+      ...NavigationOptions,
+      title: 'New Deck'
+    }
   },
   [VIEWS.DECK]: {
-    screen: Deck
+    screen: Deck,
+    navigationOptions: {
+      ...NavigationOptions,
+      title: 'Deck'
+    }
   },
   [VIEWS.NEW_QUESTION]: {
-    screen: NewQuestion
-  },
-  [VIEWS.QUESTION]: {
-    screen: Question
+    screen: NewQuestion,
+    navigationOptions: {
+      ...NavigationOptions,
+      title: 'New Card'
+    }
   },
   [VIEWS.QUIZ]: {
-    screen: Quiz
-  },
-  [VIEWS.QUIZ_RESULT]: {
-    screen: QuizResult
-  },
+    screen: Quiz,
+    navigationOptions: {
+      ...NavigationOptions,
+      title: 'Quiz'
+    }
+  }
 })
+
+function FlashcardsStatusBar({ backgroundColor, ...props }) {
+  return (
+    <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
+      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+    </View>
+  );
+}
 
 export default class App extends React.Component {
   componentDidMount() {
@@ -46,6 +83,7 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <View style={styles.container}>
+          <FlashcardsStatusBar backgroundColor={red} barStyle="light-content" />
           <Stack />
         </View>
       </Provider>

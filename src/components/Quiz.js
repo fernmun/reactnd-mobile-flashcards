@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { View, Text } from  'react-native'
+import { View, StyleSheet } from  'react-native'
 import { Button } from 'react-native-elements'
 import { connect } from 'react-redux'
 import Question from './Question'
 import QuizResult from './QuizResult'
+import { green, pureRed } from '../utils/colors'
 
 class Quiz extends Component {
   state = {
@@ -37,14 +38,20 @@ class Quiz extends Component {
         />
         <Button
           large
+          borderRadius={10}
+          backgroundColor={green}
+          icon={{ name: 'check-circle' }}
           title="Correct"
-          style={{marginTop: 10}}
+          style={styles.button}
           onPress={() => { this.handleAnswer('correct') }}
         />
         <Button
           large
+          borderRadius={10}
+          backgroundColor={pureRed}
+          icon={{ name: 'cancel' }}
           title="Incorrect"
-          style={{marginTop: 10}}
+          style={styles.button}
           onPress={() => { this.handleAnswer() }}
         />
       </View>
@@ -77,5 +84,11 @@ function mapStateToProps({ questions }, props) {
     questions: questions.filter(question => question.deck === deck)
   }
 }
+
+const styles = StyleSheet.create({
+  button: {
+    marginTop: 10
+  }
+})
 
 export default connect(mapStateToProps)(Quiz)

@@ -16,11 +16,12 @@ import {
 import { NavigationActions } from 'react-navigation'
 import { addDeck } from '../actions'
 import VIEWS from '../const/views'
+import { green } from '../utils/colors'
 
 class NewDeck extends Component {
   renderField = ({ input, meta: { touched, error }, ...props }) => {
     const { label, ...inputProps } = props
-    
+
     return (
       <View>
         <FormLabel>
@@ -55,6 +56,9 @@ class NewDeck extends Component {
           placeholder="Please enter a Deck Title..."
         />
         <Button
+          borderRadius={10}
+          backgroundColor={green}
+          icon={{ name: 'playlist-add' }}
           title="Create New Deck"
           onPress={this.props.handleSubmit(this.handleSubmit)}
         />

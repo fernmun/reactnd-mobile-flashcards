@@ -18,6 +18,7 @@ import { NavigationActions } from 'react-navigation'
 import { addQuestion } from '../actions'
 import VIEWS from '../const/views'
 import { guid } from '../utils/helpers'
+import { green } from '../utils/colors'
 
 class NewQuestion extends Component {
   renderField = ({ input, meta: { touched, error }, ...props }) => {
@@ -72,6 +73,9 @@ class NewQuestion extends Component {
           placeholder="Please write an answer..."
         />
         <Button
+          borderRadius={10}
+          backgroundColor={green}
+          icon={{ name: 'credit-card' }}
           title="Create New Card"
           onPress={this.props.handleSubmit(this.handleSubmit)}
         />

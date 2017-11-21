@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { List, ListItem } from 'react-native-elements'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { guid } from '../utils/helpers'
 import VIEWS from '../const/views'
+import { white, black } from '../utils/colors'
 
 class DeckList extends Component {
   renderRow = (deck) => {
@@ -12,7 +13,11 @@ class DeckList extends Component {
       <ListItem
         key={guid()}
         title={deck.title}
-        badge={{value: deck.questions.length}}
+        badge={{
+          value: deck.questions.length,
+          containerStyle: styles.item,
+          textStyle: { color: white }
+        }}
         onPress={() => this.props.navigate(VIEWS.DECK, { deck: deck.title })}
       />
     )
@@ -39,5 +44,12 @@ function mapStateToProps ({ decks, questions }) {
 DeckList.propTypes = {
   decks: PropTypes.array.isRequired
 }
+
+const styles = StyleSheet.create({
+  item: {
+    backgroundColor: black,
+    marginRight: 10
+  }
+})
 
 export default connect(mapStateToProps)(DeckList)

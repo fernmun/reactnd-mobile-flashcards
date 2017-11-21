@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
-import { Button } from 'react-native-elements'
+import { View, StyleSheet } from 'react-native'
+import { Button, Text } from 'react-native-elements'
 import { connect } from 'react-redux'
 import VIEWS from '../const/views'
+import { red, black } from '../utils/colors'
 
 class Deck extends Component {
   render() {
@@ -10,18 +11,26 @@ class Deck extends Component {
 
     return (
       <View>
-        <Text>{`${deck}`}</Text>
-        <Text>{`${this.props.questions.length} cards`}</Text>
+        <View style={styles.title}>
+          <Text h2>{`${deck}`}</Text>
+          <Text h5>{`${this.props.questions.length} cards`}</Text>
+        </View>
         <Button
           large
           title="Add New Card"
-          style={{marginTop: 10}}
+          borderRadius={10}
+          backgroundColor={red}
+          icon={{ name: 'add-circle' }}
+          style={styles.button}
           onPress={() => this.props.navigation.navigate(VIEWS.NEW_QUESTION, { deck })}
         />
         <Button
           large
           title="Start Quiz"
-          style={{marginTop: 10}}
+          borderRadius={10}
+          backgroundColor={black}
+          icon={{ name: 'play-circle-filled' }}
+          style={styles.button}
           onPress={() => this.props.navigation.navigate(VIEWS.QUIZ, { deck })}
         />
       </View>
@@ -36,5 +45,14 @@ function mapStateToProps({ questions }, props) {
     questions: questions.filter(question => question.deck === deck)
   }
 }
+
+const styles = StyleSheet.create({
+  title: {
+    alignItems: 'center'
+  },
+  button: {
+    marginTop: 10
+  }
+})
 
 export default connect(mapStateToProps)(Deck)
