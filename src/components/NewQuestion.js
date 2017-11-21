@@ -20,26 +20,27 @@ import VIEWS from '../const/views'
 import { guid } from '../utils/helpers'
 import { green } from '../utils/colors'
 
-class NewQuestion extends Component {
-  renderField = ({ input, meta: { touched, error }, ...props }) => {
-    const { label, ...inputProps } = props;
-    return (
-      <View>
-        <FormLabel>
-          {label}
-        </FormLabel>
-        <FormInput
-          onChangeText={input.onChange}
-          {...input}
-          {...inputProps}
-        />
-        <FormValidationMessage>
-          {touched && error ? error : null}
-        </FormValidationMessage>
-      </View>
-    )
-  }
+const InputWithLabel = ({ input, meta: { touched, error }, ...props }) => {
+  const { label, ...inputProps } = props
 
+  return (
+    <View>
+      <FormLabel>
+        {label}
+      </FormLabel>
+      <FormInput
+        onChangeText={input.onChange}
+        {...input}
+        {...inputProps}
+      />
+      <FormValidationMessage>
+        {touched && error ? error : null}
+      </FormValidationMessage>
+    </View>
+  )
+}
+
+class NewQuestion extends Component {
   handleSubmit = values => {
     const { deck } = this.props.navigation.state.params
 
@@ -59,16 +60,14 @@ class NewQuestion extends Component {
     return (
       <View style={{ flex: 1 }}>
         <Field
-          key={ guid() }
           name="question"
-          component={this.renderField}
+          component={InputWithLabel}
           label="Question"
           placeholder="Please write a question..."
         />
         <Field
-          key={ guid() }
           name="answer"
-          component={this.renderField}
+          component={InputWithLabel}
           label="Answer"
           placeholder="Please write an answer..."
         />
@@ -85,22 +84,18 @@ class NewQuestion extends Component {
 }
 
 function validate(values, props) {
-  const error = {}
+  const errors = {}
 
   if (!values.question)
-    error.question = 'Question should not be empty!'
+    errors.question = 'Question should not be empty!'
 
   if (!values.answer)
-    error.question = 'Answer should not be empty!'
+    errors.question = 'Answer should not be empty!'
 
-  return error
+  return errors
 }
 
-function mapStateToProps({ questions }) {
-  return { questions }
-}
-
-export default connect(mapStateToProps, { addQuestion })(
+export default connect(null, { addQuestion })(
   reduxForm({
     validate,
     form: 'NewQuestion'
