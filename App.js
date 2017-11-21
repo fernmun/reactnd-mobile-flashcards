@@ -19,7 +19,8 @@ const NavigationOptions = {
   headerTintColor: white,
   headerTitleStyle: {
     fontSize: 24,
-    marginBottom: 40
+    marginBottom: 40,
+    marginTop: 40
   },
   headerStyle: {
     backgroundColor: red,
