@@ -13,7 +13,6 @@ import {
   reset,
   untouch
 } from 'redux-form'
-import { NavigationActions } from 'react-navigation'
 import { addDeck } from '../actions'
 import VIEWS from '../const/views'
 import { green } from '../utils/colors'
@@ -41,7 +40,7 @@ class NewDeck extends Component {
 
   handleSubmit = values => {
     this.props.addDeck(values.deck)
-    this.props.navigation.dispatch(NavigationActions.back())
+    this.props.navigation.navigate(VIEWS.DECK, { deck: values.deck })
     this.props.dispatch(untouch('NewDeck'))
     this.props.dispatch(reset('NewDeck'))
   }

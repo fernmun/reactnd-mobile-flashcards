@@ -8,12 +8,13 @@ import { red, black } from '../utils/colors'
 class Deck extends Component {
   render() {
     const { deck } = this.props.navigation.state.params
+    const { questions } = this.props
 
     return (
       <View>
         <View style={styles.title}>
           <Text h2>{`${deck}`}</Text>
-          <Text h5>{`${this.props.questions.length} cards`}</Text>
+          <Text h5>{`${questions.length} cards`}</Text>
         </View>
         <Button
           large
@@ -24,15 +25,17 @@ class Deck extends Component {
           style={styles.button}
           onPress={() => this.props.navigation.navigate(VIEWS.NEW_QUESTION, { deck })}
         />
-        <Button
-          large
-          title="Start Quiz"
-          borderRadius={10}
-          backgroundColor={black}
-          icon={{ name: 'play-circle-filled' }}
-          style={styles.button}
-          onPress={() => this.props.navigation.navigate(VIEWS.QUIZ, { deck })}
-        />
+        {questions.length > 0 && (
+          <Button
+            large
+            title="Start Quiz"
+            borderRadius={10}
+            backgroundColor={black}
+            icon={{ name: 'play-circle-filled' }}
+            style={styles.button}
+            onPress={() => this.props.navigation.navigate(VIEWS.QUIZ, { deck })}
+          />
+        )}
       </View>
     )
   }
