@@ -4,15 +4,17 @@ import { Button } from 'react-native-elements'
 import { connect } from 'react-redux'
 import Question from './Question'
 import QuizResult from './QuizResult'
-import { green, pureRed } from '../utils/colors'
+import { green, pureRed, black } from '../utils/colors'
 
 class Quiz extends Component {
-  state = {
+  initialState = {
     remainingQuestions: this.props.questions.length,
     currentQuestion: 0,
     correct: 0,
     incorrect: 0
   }
+
+  state = this.initialState
 
   handleAnswer = (answer) => {
     answer === 'correct' ?
@@ -60,7 +62,18 @@ class Quiz extends Component {
 
   renderResult = () => {
     return (
-      <QuizResult correct={this.state.correct} total={this.props.questions.length} />
+      <View>
+        <QuizResult correct={this.state.correct} total={this.props.questions.length} />
+        <Button
+          large
+          title="Restart Quiz"
+          borderRadius={10}
+          backgroundColor={black}
+          icon={{ name: 'play-circle-filled' }}
+          style={styles.button}
+          onPress={() => this.setState(() => (this.initialState))}
+        />
+      </View>
     )
   }
 
