@@ -1,4 +1,4 @@
-import { ADD_DECK, ADD_QUESTION } from '../const/actions'
+import { ADD_DECK, ADD_QUESTION } from '../actions/types'
 
 export function addDeck(deck) {
   return {
